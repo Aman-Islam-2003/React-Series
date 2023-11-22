@@ -1,7 +1,23 @@
+import { useState } from "react";
+
 function App(){
+
+  const [count, setCount] = useState(0);
+
+  let counter = 0
+  const addValue = ()=>{
+     setCount(counter+=1);
+     console.log(counter)
+  }
+  const decreaseValue = ()=>{
+    setCount(counter-=1);
+    console.log(counter)
+ }
   return(
     <>
-      <h1>First react App</h1>
+      <h1>Counter Value: {count}</h1>
+      <button onClick={addValue}>Increment</button>
+      <button onClick={decreaseValue}>Decrement</button>
     </>
   )
 }
