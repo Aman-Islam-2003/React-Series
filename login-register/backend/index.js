@@ -16,7 +16,7 @@ async function main() {
   );
   console.log("db connected");
 }
-
+  
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
