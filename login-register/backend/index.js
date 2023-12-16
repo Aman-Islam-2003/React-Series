@@ -23,16 +23,32 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-const User = mongoose.model("users", userSchema);
+const User = new mongoose.model("users", userSchema);
 
 //routes
-// app.post("/login", (req, res) => {
-//   res.send("Success");
-// });
+app.post("/login", async(req, res) => {
+  const {email,password} = req.body;
+  if ( !email || !password) {
+    res.status(400).send("Required fields can't be empty");
+  }
+
+  const user = await User.findOne({email});
+  if(!user){
+    res.status(400).send("User doesn't exist") 
+  }
+
+  if(user.password != password){
+    res.status(400).send("Password doesn't match"); 
+  }
+
+  console.log(user);
+  res.status(200).send("Successfully Logged in", user)
+
+});
 
 app.post("/register", async (req, res) => {
-  const { name, email, password, reEnterPassword } = req.body;
-  if (!name || !email || !password || !reEnterPassword) {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
     res.status(400).send("Required fields can't be empty");
   }
 
@@ -45,10 +61,10 @@ app.post("/register", async (req, res) => {
     name,
     email,
     password,
-    reEnterPassword,
   });
   await user.save();
-  console.log(user)
+   console.log(user);
+   res.send("Successfully registered")
 });
 
 app.listen(PORT, () => {
