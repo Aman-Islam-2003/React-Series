@@ -12,7 +12,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
   mongoose.connect(
-    "mongodb+srv://farrukhadeel:pps993icp956@cluster0.ysuiv.mongodb.net/demo"
+    ""
   );
   console.log("db connected");
 }
