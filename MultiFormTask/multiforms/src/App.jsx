@@ -4,16 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import SignUp from './components/SignUp'
 import Topnav from './components/Topnav'
-import Login from './components/Login'
+import Profile from './components/Profile'
+import Track from './components/Track'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      {/* <SignUp /> */}
-      {/* <Login/> */}
-      <Topnav/>
+    <Track/>
     </>
   )
 }
