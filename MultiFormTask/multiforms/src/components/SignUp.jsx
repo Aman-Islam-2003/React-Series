@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import Topnav from './Topnav';
+import {useDispatch, useSelector} from 'react-redux'
+import { moveNextAction } from '../features/formSlice';
 
 export default function SignUp() {
-    //const navigate = useNavigate();
+  const dispatch = useDispatch();
+    const navigate = useNavigate();
    const [user, setUser] = useState({
     name:'',
     email:'',
@@ -21,14 +26,15 @@ export default function SignUp() {
        event.preventDefault();
        const { name, email, password } = user;
        if(name && email && password){
-        // navigate("/quiz") 
-         console.log("Go to Page")
+        dispatch(moveNextAction())
+         navigate("/login") 
        }else{
         alert("Required fields empty")
        }
     }
   return (
     <>
+    <Topnav/>
     <h2 className='mb-5 font-bold text-2xl'>Register</h2>
     <div className='w-80 border-2 border-sky-500 p-5 rounded-lg'>
         <form className='max-w-sm mx-auto'>
